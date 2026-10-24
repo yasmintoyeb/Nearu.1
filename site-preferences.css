@@ -1,0 +1,64 @@
+body.dark-mode {
+  color-scheme: dark;
+  background-color: #0f172a !important;
+  color: #e2e8f0 !important;
+}
+
+body.dark-mode .bg-white,
+body.dark-mode .bg-slate-50 {
+  background-color: #1e293b !important;
+}
+
+body.dark-mode .bg-slate-100 {
+  background-color: #334155 !important;
+}
+
+body.dark-mode .bg-slate-200 {
+  background-color: #475569 !important;
+}
+
+body.dark-mode .bg-primary-50 {
+  background-color: #1e3a5f !important;
+}
+
+body.dark-mode .border-slate-100,
+body.dark-mode .border-slate-200,
+body.dark-mode .border-slate-300 {
+  border-color: #334155 !important;
+}
+
+body.dark-mode .border-primary-200 {
+  border-color: #1d4ed8 !important;
+}
+
+body.dark-mode .text-slate-900,
+body.dark-mode .text-slate-800,
+body.dark-mode .text-slate-700,
+body.dark-mode .text-slate-600 {
+  color: #e2e8f0 !important;
+}
+
+body.dark-mode .text-slate-500 {
+  color: #cbd5e1 !important;
+}
+
+body.dark-mode .text-slate-400 {
+  color: #94a3b8 !important;
+}
+
+body.dark-mode input,
+body.dark-mode select,
+body.dark-mode textarea {
+  color: #f1f5f9;
+  background-color: #1e293b;
+}
+
+body.dark-mode input::placeholder,
+body.dark-mode textarea::placeholder {
+  color: #94a3b8;
+}
+
+body.dark-mode option {
+  color: #f1f5f9;
+  background-color: #1e293b;
+}

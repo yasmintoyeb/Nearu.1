@@ -50,6 +50,7 @@
     }
 
   </style>
+  <link rel="stylesheet" href="./site-preferences.css" />
 </head>
 
 
@@ -124,12 +125,12 @@
 
         <div class="flex items-center gap-3">
 
-          <button class="text-sm text-slate-500">
-            EN ▾
+          <button data-language-toggle type="button" class="text-sm text-slate-500" aria-label="Switch to Khmer">
+            ខ្មែរ ▾
           </button>
 
-          <button
-            class="w-9 h-9 rounded-full bg-slate-100 flex items-center justify-center">
+          <button data-dark-mode-toggle type="button"
+            class="w-9 h-9 rounded-full bg-slate-100 flex items-center justify-center" aria-label="Turn on dark mode" aria-pressed="false">
             🌙
           </button>
 
@@ -1956,6 +1957,7 @@
 
   </script>
 
+  <script src="./site-preferences.js"></script>
 </body>
 
 </html>

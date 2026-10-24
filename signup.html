@@ -17,6 +17,7 @@
       }
     }
   </script>
+  <link rel="stylesheet" href="./site-preferences.css" />
 </head>
 <body class="min-h-screen bg-slate-50 text-slate-800 antialiased">
   <header class="border-b border-slate-200 bg-white">
@@ -25,7 +26,11 @@
         <img src="./image/image.png" alt="NearU Logo" class="w-8 h-8 inline-block" />
         <span><span class="text-[#5E17EB]">N</span><span class="text-[#FF751F]">ear</span><span class="bg-gradient-to-b from-[#6D3FD1] via-[#A6538D] to-[#E0AA3E] bg-clip-text text-transparent">U</span><span class="text-[#D9A441]">.</span></span>
       </a>
-      <a href="login.html" class="text-sm font-medium text-primary-600 hover:text-primary-700">Log in</a>
+      <div class="flex items-center gap-3">
+        <button data-language-toggle type="button" class="text-sm text-slate-500 hover:text-slate-700" aria-label="Switch to Khmer">ខ្មែរ ▾</button>
+        <button data-dark-mode-toggle type="button" class="w-9 h-9 rounded-full bg-slate-100 flex items-center justify-center text-slate-500" aria-label="Turn on dark mode" aria-pressed="false">🌙</button>
+        <a href="login.html" class="text-sm font-medium text-primary-600 hover:text-primary-700">Log in</a>
+      </div>
     </nav>
   </header>
 
@@ -77,5 +82,6 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="./supabase.js"></script>
   <script src="./auth.js"></script>
+  <script src="./site-preferences.js"></script>
 </body>
 </html>
