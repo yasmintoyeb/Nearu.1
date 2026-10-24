@@ -1,0 +1,1971 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>All Listings - NearU</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              50: "#eff6ff",
+              100: "#dbeafe",
+              500: "#3b82f6",
+              600: "#2563eb",
+              700: "#1d4ed8"
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+
+    /* Card animation */
+    .filter-animation {
+      animation: showRoom 0.4s ease;
+    }
+
+    @keyframes showRoom {
+
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+    }
+
+  </style>
+</head>
+
+
+<body class="bg-slate-50 text-slate-800 antialiased">
+
+
+  <!-- =====================================================
+       NAVBAR
+  ====================================================== -->
+
+  <nav class="bg-white border-b border-slate-200 sticky top-0 z-50">
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="flex items-center justify-between h-16">
+
+
+        <!-- LOGO -->
+
+        <div class="flex items-center gap-8">
+
+          <a
+            href="index.html"
+            class="flex items-center gap-2 font-bold text-xl text-primary-600">
+
+            <span
+              class="w-8 h-8 bg-primary-600 text-white rounded-lg flex items-center justify-center text-sm">
+              🏠
+            </span>
+
+            NearU.
+
+          </a>
+
+
+          <!-- NAVIGATION -->
+
+          <div class="hidden md:flex items-center gap-1">
+
+            <a
+              href="index.html"
+              class="px-3 py-2 text-sm font-medium text-slate-600 hover:text-primary-600 hover:bg-slate-100 rounded-lg">
+              Home
+            </a>
+
+            <a
+              href="listings.html"
+              class="px-3 py-2 text-sm font-medium text-primary-600 bg-primary-50 rounded-lg">
+              Listings
+            </a>
+
+            <a
+              href="map.html"
+              class="px-3 py-2 text-sm font-medium text-slate-600 hover:text-primary-600 hover:bg-slate-100 rounded-lg">
+              Map
+            </a>
+
+            <a
+              href="how-it-works.html"
+              class="px-3 py-2 text-sm font-medium text-slate-600 hover:text-primary-600 hover:bg-slate-100 rounded-lg">
+              How it Works
+            </a>
+
+            <a
+              href="landlords.html"
+              class="px-3 py-2 text-sm font-medium text-slate-600 hover:text-primary-600 hover:bg-slate-100 rounded-lg">
+              For Landlords
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <!-- RIGHT NAV -->
+
+        <div class="flex items-center gap-3">
+
+          <button class="text-sm text-slate-500">
+            EN ▾
+          </button>
+
+          <button
+            class="w-9 h-9 rounded-full bg-slate-100 flex items-center justify-center">
+            🌙
+          </button>
+
+          <a
+            href="login.html"
+            class="text-sm font-medium text-slate-600 hover:text-primary-600">
+            Login
+          </a>
+
+          <a
+            href="signup.html"
+            class="px-4 py-2 bg-primary-600 text-white text-sm font-medium rounded-lg hover:bg-primary-700">
+            Sign Up
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </nav>
+
+
+
+  <!-- =====================================================
+       MAIN
+  ====================================================== -->
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+    <div class="flex flex-col lg:flex-row gap-8">
+
+
+      <!-- =================================================
+           FILTER SIDEBAR
+      ================================================== -->
+
+      <aside class="w-full lg:w-64 flex-shrink-0">
+
+        <div
+          class="bg-white rounded-2xl border border-slate-200 p-5 sticky top-24">
+
+
+          <h2 class="font-semibold text-slate-900 mb-4">
+            Filters
+          </h2>
+
+
+          <!-- PRICE -->
+
+          <div class="mb-5">
+
+            <label
+              class="block text-xs font-medium text-slate-500 mb-2">
+              Price Range (per month)
+            </label>
+
+            <input
+              id="priceFilter"
+              type="range"
+              min="50"
+              max="300"
+              value="300"
+              class="w-full accent-primary-600">
+
+            <div
+              class="flex justify-between text-xs text-slate-500 mt-1">
+
+              <span>$50</span>
+
+              <span id="priceValue">
+                $300
+              </span>
+
+              <span>$300</span>
+
+            </div>
+
+          </div>
+
+
+          <!-- PROPERTY TYPE -->
+
+          <div class="mb-5">
+
+            <label
+              class="block text-xs font-medium text-slate-500 mb-2">
+              Property Type
+            </label>
+
+
+            <div class="space-y-2">
+
+
+              <label class="flex items-center gap-2 text-sm">
+
+                <input
+                  type="checkbox"
+                  value="private"
+                  class="property-filter rounded text-primary-600">
+
+                Private Room
+
+              </label>
+
+
+              <label class="flex items-center gap-2 text-sm">
+
+                <input
+                  type="checkbox"
+                  value="apartment"
+                  class="property-filter rounded text-primary-600">
+
+                Apartment
+
+              </label>
+
+
+              <label class="flex items-center gap-2 text-sm">
+
+                <input
+                  type="checkbox"
+                  value="house"
+                  class="property-filter rounded text-primary-600">
+
+                House
+
+              </label>
+
+
+            </div>
+
+          </div>
+
+
+          <!-- AMENITIES -->
+
+          <div class="mb-5">
+
+            <label
+              class="block text-xs font-medium text-slate-500 mb-2">
+              Amenities
+            </label>
+
+
+            <div class="space-y-2">
+
+
+              <label class="flex items-center gap-2 text-sm">
+
+                <input
+                  type="checkbox"
+                  value="wifi"
+                  class="amenity-filter rounded text-primary-600">
+
+                Wi-Fi
+
+              </label>
+
+
+              <label class="flex items-center gap-2 text-sm">
+
+                <input
+                  type="checkbox"
+                  value="ac"
+                  class="amenity-filter rounded text-primary-600">
+
+                Air Conditioner
+
+              </label>
+
+
+              <label class="flex items-center gap-2 text-sm">
+
+                <input
+                  type="checkbox"
+                  value="bathroom"
+                  class="amenity-filter rounded text-primary-600">
+
+                Private Bathroom
+
+              </label>
+
+
+              <label class="flex items-center gap-2 text-sm">
+
+                <input
+                  type="checkbox"
+                  value="kitchen"
+                  class="amenity-filter rounded text-primary-600">
+
+                Kitchen
+
+              </label>
+
+
+            </div>
+
+          </div>
+
+
+          <!-- DISTANCE -->
+
+          <div class="mb-5">
+
+            <label
+              class="block text-xs font-medium text-slate-500 mb-2">
+              Distance to University
+            </label>
+
+
+            <input
+              id="distanceFilter"
+              type="range"
+              min="0"
+              max="5"
+              value="5"
+              step="0.5"
+              class="w-full accent-primary-600">
+
+
+            <div
+              class="flex justify-between text-xs text-slate-500 mt-1">
+
+              <span>0 km</span>
+
+              <span id="distanceValue">
+                Up to 5 km
+              </span>
+
+              <span>5 km</span>
+
+            </div>
+
+          </div>
+
+
+          <!-- APPLY BUTTON -->
+
+          <button
+            id="applyFilters"
+            class="w-full bg-primary-600 hover:bg-primary-700 text-white font-medium py-2.5 rounded-xl transition">
+
+            Apply Filters
+
+          </button>
+
+
+          <!-- CLEAR BUTTON -->
+
+          <button
+            id="clearFilters"
+            class="w-full mt-2 text-sm text-slate-500 hover:text-slate-700">
+
+            Clear All
+
+          </button>
+
+        </div>
+
+      </aside>
+
+
+
+      <!-- =================================================
+           LISTINGS
+      ================================================== -->
+
+      <main class="flex-1">
+
+
+        <!-- HEADER -->
+
+        <div
+          class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+
+
+          <div>
+
+            <h1
+              class="text-2xl font-bold text-slate-900">
+              All Listings
+            </h1>
+
+            <p
+              id="resultText"
+              class="text-sm text-slate-500 mt-1">
+              Showing 1–2 of 6 properties
+            </p>
+
+          </div>
+
+
+          <!-- SORT -->
+
+          <select
+            id="sortSelect"
+            class="text-sm border border-slate-200 rounded-lg px-3 py-2 bg-white">
+
+            <option value="default">
+              Sort by: Newest
+            </option>
+
+            <option value="low">
+              Price: Low to High
+            </option>
+
+            <option value="high">
+              Price: High to Low
+            </option>
+
+            <option value="distance">
+              Distance
+
+            </option>
+
+          </select>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             PROPERTY GRID
+        ================================================== -->
+
+        <div
+          id="propertyGrid"
+          class="grid sm:grid-cols-2 xl:grid-cols-3 gap-5">
+
+
+          <!-- =================================================
+               PROPERTY 1
+          ================================================== -->
+
+          <div
+            class="property-card bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition"
+            data-type="private"
+            data-price="90"
+            data-distance="0.5"
+            data-amenities="wifi,bathroom"
+            data-order="1">
+
+
+            <div class="relative h-44 bg-slate-200">
+
+              <img
+                src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=600&h=400&fit=crop"
+                class="w-full h-full object-cover"
+                alt="Private Room near RUPP">
+
+
+              <span
+                class="absolute top-2 left-2 bg-emerald-500 text-white text-xs font-semibold px-2 py-0.5 rounded-full">
+                ✓ Verified
+              </span>
+
+
+              <span
+                class="absolute top-2 right-2 bg-amber-400 text-white text-xs font-semibold px-2 py-0.5 rounded-full">
+                ★ Featured
+              </span>
+
+            </div>
+
+
+            <div class="p-4">
+
+
+              <div class="flex justify-between items-start gap-2">
+
+                <h3 class="font-semibold text-slate-900 text-sm">
+                  Private Room near RUPP
+                </h3>
+
+                <span class="font-bold text-primary-600 whitespace-nowrap">
+                  $90
+                  <span class="text-xs font-normal text-slate-500">
+                    /mo
+                  </span>
+                </span>
+
+              </div>
+
+
+              <p class="text-xs text-slate-500 mt-1">
+                📍 0.5 km to RUPP
+              </p>
+
+
+              <div class="flex flex-wrap gap-1.5 mt-2">
+
+                <span
+                  class="text-xs bg-slate-100 px-2 py-0.5 rounded-full">
+                  Wi-Fi
+                </span>
+
+                <span
+                  class="text-xs bg-slate-100 px-2 py-0.5 rounded-full">
+                  Private Bathroom
+                </span>
+
+              </div>
+
+
+              <div
+                class="flex items-center justify-between mt-3 pt-3 border-t border-slate-100">
+
+
+                <div class="flex items-center gap-1.5">
+
+                  <div
+                    class="w-6 h-6 rounded-full bg-primary-100 text-primary-700 flex items-center justify-center text-[10px] font-bold">
+                    S
+                  </div>
+
+                  <span class="text-xs text-slate-600">
+                    Sokha L.
+                  </span>
+
+                </div>
+
+
+                <a
+                  href="property-detail.html"
+                  class="text-xs font-medium text-primary-600 border border-primary-200 px-2.5 py-1 rounded-lg hover:bg-primary-50">
+                  View Details
+                </a>
+
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+
+          <!-- =================================================
+               PROPERTY 2
+          ================================================== -->
+
+          <div
+            class="property-card bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition"
+            data-type="apartment"
+            data-price="160"
+            data-distance="0.7"
+            data-amenities="wifi,ac,kitchen"
+            data-order="2">
+
+
+            <div class="relative h-44 bg-slate-200">
+
+              <img
+                src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=600&h=400&fit=crop"
+                class="w-full h-full object-cover"
+                alt="Cozy Studio near RULE">
+
+
+              <span
+                class="absolute top-2 left-2 bg-emerald-500 text-white text-xs font-semibold px-2 py-0.5 rounded-full">
+                ✓ Verified
+              </span>
+
+
+              <span
+                class="absolute top-2 right-2 bg-amber-400 text-white text-xs font-semibold px-2 py-0.5 rounded-full">
+                ★ Featured
+              </span>
+
+            </div>
+
+
+            <div class="p-4">
+
+
+              <div class="flex justify-between items-start gap-2">
+
+                <h3 class="font-semibold text-slate-900 text-sm">
+                  Cozy Studio near RULE
+                </h3>
+
+                <span class="font-bold text-primary-600 whitespace-nowrap">
+                  $160
+                  <span class="text-xs font-normal text-slate-500">
+                    /mo
+                  </span>
+                </span>
+
+              </div>
+
+
+              <p class="text-xs text-slate-500 mt-1">
+                📍 0.7 km to RULE
+              </p>
+
+
+              <div class="flex flex-wrap gap-1.5 mt-2">
+
+                <span
+                  class="text-xs bg-slate-100 px-2 py-0.5 rounded-full">
+                  Wi-Fi
+                </span>
+
+                <span
+                  class="text-xs bg-slate-100 px-2 py-0.5 rounded-full">
+                  Air Conditioner
+                </span>
+
+                <span
+                  class="text-xs bg-slate-100 px-2 py-0.5 rounded-full">
+                  Kitchen
+                </span>
+
+              </div>
+
+
+              <div
+                class="flex items-center justify-between mt-3 pt-3 border-t border-slate-100">
+
+
+                <div class="flex items-center gap-1.5">
+
+                  <div
+                    class="w-6 h-6 rounded-full bg-primary-100 text-primary-700 flex items-center justify-center text-[10px] font-bold">
+                    R
+                  </div>
+
+                  <span class="text-xs text-slate-600">
+                    Rithy M.
+                  </span>
+
+                </div>
+
+
+                <a
+                  href="property-detail.html"
+                  class="text-xs font-medium text-primary-600 border border-primary-200 px-2.5 py-1 rounded-lg hover:bg-primary-50">
+                  View Details
+                </a>
+
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+
+          <!-- =================================================
+               PROPERTY 3
+          ================================================== -->
+
+          <div
+            class="property-card bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition"
+            data-type="house"
+            data-price="120"
+            data-distance="1"
+            data-amenities="wifi,kitchen"
+            data-order="3">
+
+
+            <div class="relative h-44 bg-slate-200">
+
+              <img
+                src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&h=400&fit=crop"
+                class="w-full h-full object-cover"
+                alt="Shared House near NUM">
+
+
+              <span
+                class="absolute top-2 left-2 bg-emerald-500 text-white text-xs font-semibold px-2 py-0.5 rounded-full">
+                ✓ Verified
+              </span>
+
+            </div>
+
+
+            <div class="p-4">
+
+
+              <div class="flex justify-between items-start gap-2">
+
+                <h3 class="font-semibold text-slate-900 text-sm">
+                  Shared House near NUM
+                </h3>
+
+                <span class="font-bold text-primary-600 whitespace-nowrap">
+                  $120
+                  <span class="text-xs font-normal text-slate-500">
+                    /mo
+                  </span>
+                </span>
+
+              </div>
+
+
+              <p class="text-xs text-slate-500 mt-1">
+                📍 1.0 km to NUM
+              </p>
+
+
+              <div class="flex flex-wrap gap-1.5 mt-2">
+
+                <span
+                  class="text-xs bg-slate-100 px-2 py-0.5 rounded-full">
+                  Wi-Fi
+                </span>
+
+                <span
+                  class="text-xs bg-slate-100 px-2 py-0.5 rounded-full">
+                  Kitchen
+                </span>
+
+              </div>
+
+
+              <div
+                class="flex items-center justify-between mt-3 pt-3 border-t border-slate-100">
+
+
+                <div class="flex items-center gap-1.5">
+
+                  <div
+                    class="w-6 h-6 rounded-full bg-primary-100 text-primary-700 flex items-center justify-center text-[10px] font-bold">
+                    V
+                  </div>
+
+                  <span class="text-xs text-slate-600">
+                    Vanny P.
+                  </span>
+
+                </div>
+
+
+                <a
+                  href="property-detail.html"
+                  class="text-xs font-medium text-primary-600 border border-primary-200 px-2.5 py-1 rounded-lg hover:bg-primary-50">
+                  View Details
+                </a>
+
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+
+          <!-- =================================================
+               PROPERTY 4
+          ================================================== -->
+
+          <div
+            class="property-card bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition"
+            data-type="private"
+            data-price="85"
+            data-distance="0.6"
+            data-amenities="wifi,bathroom"
+            data-order="4">
+
+
+            <div class="relative h-44 bg-slate-200">
+
+              <img
+                src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=600&h=400&fit=crop"
+                class="w-full h-full object-cover"
+                alt="Private Room near ITC">
+
+
+              <span
+                class="absolute top-2 left-2 bg-emerald-500 text-white text-xs font-semibold px-2 py-0.5 rounded-full">
+                ✓ Verified
+              </span>
+
+            </div>
+
+
+            <div class="p-4">
+
+
+              <div class="flex justify-between items-start gap-2">
+
+                <h3 class="font-semibold text-slate-900 text-sm">
+                  Private Room near ITC
+                </h3>
+
+                <span class="font-bold text-primary-600 whitespace-nowrap">
+                  $85
+                  <span class="text-xs font-normal text-slate-500">
+                    /mo
+                  </span>
+                </span>
+
+              </div>
+
+
+              <p class="text-xs text-slate-500 mt-1">
+                📍 0.6 km to ITC
+              </p>
+
+
+              <div class="flex flex-wrap gap-1.5 mt-2">
+
+                <span
+                  class="text-xs bg-slate-100 px-2 py-0.5 rounded-full">
+                  Wi-Fi
+                </span>
+
+                <span
+                  class="text-xs bg-slate-100 px-2 py-0.5 rounded-full">
+                  Private Bathroom
+                </span>
+
+              </div>
+
+
+              <div
+                class="flex items-center justify-between mt-3 pt-3 border-t border-slate-100">
+
+
+                <div class="flex items-center gap-1.5">
+
+                  <div
+                    class="w-6 h-6 rounded-full bg-primary-100 text-primary-700 flex items-center justify-center text-[10px] font-bold">
+                    C
+                  </div>
+
+                  <span class="text-xs text-slate-600">
+                    Channa S.
+                  </span>
+
+                </div>
+
+
+                <a
+                  href="property-detail.html"
+                  class="text-xs font-medium text-primary-600 border border-primary-200 px-2.5 py-1 rounded-lg hover:bg-primary-50">
+                  View Details
+                </a>
+
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+
+          <!-- =================================================
+               PROPERTY 5
+          ================================================== -->
+
+          <div
+            class="property-card bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition"
+            data-type="apartment"
+            data-price="200"
+            data-distance="1.2"
+            data-amenities="wifi,ac,kitchen"
+            data-order="5">
+
+
+            <div class="relative h-44 bg-slate-200">
+
+              <img
+                src="https://images.unsplash.com/photo-1484154218962-a197022b5858?w=600&h=400&fit=crop"
+                class="w-full h-full object-cover"
+                alt="Modern Studio near AEON">
+
+
+              <span
+                class="absolute top-2 left-2 bg-emerald-500 text-white text-xs font-semibold px-2 py-0.5 rounded-full">
+                ✓ Verified
+              </span>
+
+
+              <span
+                class="absolute top-2 right-2 bg-amber-400 text-white text-xs font-semibold px-2 py-0.5 rounded-full">
+                ★ Featured
+              </span>
+
+            </div>
+
+
+            <div class="p-4">
+
+
+              <div class="flex justify-between items-start gap-2">
+
+                <h3 class="font-semibold text-slate-900 text-sm">
+                  Modern Studio near AEON
+                </h3>
+
+                <span class="font-bold text-primary-600 whitespace-nowrap">
+                  $200
+                  <span class="text-xs font-normal text-slate-500">
+                    /mo
+                  </span>
+                </span>
+
+              </div>
+
+
+              <p class="text-xs text-slate-500 mt-1">
+                📍 1.2 km to AEON
+              </p>
+
+
+              <div class="flex flex-wrap gap-1.5 mt-2">
+
+                <span
+                  class="text-xs bg-slate-100 px-2 py-0.5 rounded-full">
+                  Wi-Fi
+                </span>
+
+                <span
+                  class="text-xs bg-slate-100 px-2 py-0.5 rounded-full">
+                  Air Conditioner
+                </span>
+
+                <span
+                  class="text-xs bg-slate-100 px-2 py-0.5 rounded-full">
+                  Kitchen
+                </span>
+
+              </div>
+
+
+              <div
+                class="flex items-center justify-between mt-3 pt-3 border-t border-slate-100">
+
+
+                <div class="flex items-center gap-1.5">
+
+                  <div
+                    class="w-6 h-6 rounded-full bg-primary-100 text-primary-700 flex items-center justify-center text-[10px] font-bold">
+                    T
+                  </div>
+
+                  <span class="text-xs text-slate-600">
+                    Theavy K.
+                  </span>
+
+                </div>
+
+
+                <a
+                  href="property-detail.html"
+                  class="text-xs font-medium text-primary-600 border border-primary-200 px-2.5 py-1 rounded-lg hover:bg-primary-50">
+                  View Details
+                </a>
+
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+
+          <!-- =================================================
+               PROPERTY 6
+          ================================================== -->
+
+          <div
+            class="property-card bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition"
+            data-type="house"
+            data-price="110"
+            data-distance="1.5"
+            data-amenities="wifi,bathroom"
+            data-order="6">
+
+
+            <div class="relative h-44 bg-slate-200">
+
+              <img
+                src="https://images.unsplash.com/photo-1554995207-c18c203602cb?w=600&h=400&fit=crop"
+                class="w-full h-full object-cover"
+                alt="House Room near BBU">
+
+
+              <span
+                class="absolute top-2 left-2 bg-emerald-500 text-white text-xs font-semibold px-2 py-0.5 rounded-full">
+                ✓ Verified
+              </span>
+
+            </div>
+
+
+            <div class="p-4">
+
+
+              <div class="flex justify-between items-start gap-2">
+
+                <h3 class="font-semibold text-slate-900 text-sm">
+                  House Room near BBU
+                </h3>
+
+                <span class="font-bold text-primary-600 whitespace-nowrap">
+                  $110
+                  <span class="text-xs font-normal text-slate-500">
+                    /mo
+                  </span>
+                </span>
+
+              </div>
+
+
+              <p class="text-xs text-slate-500 mt-1">
+                📍 1.5 km to BBU
+              </p>
+
+
+              <div class="flex flex-wrap gap-1.5 mt-2">
+
+                <span
+                  class="text-xs bg-slate-100 px-2 py-0.5 rounded-full">
+                  Wi-Fi
+                </span>
+
+                <span
+                  class="text-xs bg-slate-100 px-2 py-0.5 rounded-full">
+                  Private Bathroom
+                </span>
+
+              </div>
+
+
+              <div
+                class="flex items-center justify-between mt-3 pt-3 border-t border-slate-100">
+
+
+                <div class="flex items-center gap-1.5">
+
+                  <div
+                    class="w-6 h-6 rounded-full bg-primary-100 text-primary-700 flex items-center justify-center text-[10px] font-bold">
+                    D
+                  </div>
+
+                  <span class="text-xs text-slate-600">
+                    Dara T.
+                  </span>
+
+                </div>
+
+
+                <a
+                  href="property-detail.html"
+                  class="text-xs font-medium text-primary-600 border border-primary-200 px-2.5 py-1 rounded-lg hover:bg-primary-50">
+                  View Details
+                </a>
+
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             NO RESULTS
+        ================================================== -->
+
+        <div
+          id="noResults"
+          class="hidden text-center py-16">
+
+          <div class="text-5xl mb-4">
+            🏠
+          </div>
+
+          <h2
+            class="text-xl font-semibold text-slate-900">
+            No properties found
+          </h2>
+
+          <p
+            class="text-sm text-slate-500 mt-2">
+            Try changing your filters to find more rooms.
+          </p>
+
+        </div>
+
+
+
+        <!-- =================================================
+             PAGINATION
+        ================================================== -->
+
+        <div
+          id="pagination"
+          class="mt-10 flex items-center justify-center gap-2">
+
+
+          <!-- PREVIOUS -->
+
+          <button
+            id="prevPage"
+            type="button"
+            class="w-10 h-10 rounded-lg border border-slate-200 text-slate-500 hover:bg-slate-100 disabled:opacity-40 disabled:cursor-not-allowed">
+
+            ‹
+
+          </button>
+
+
+          <!-- PAGE 1 -->
+
+          <button
+            type="button"
+            class="page-button w-10 h-10 rounded-lg bg-primary-600 text-white font-medium"
+            data-page="1">
+
+            1
+
+          </button>
+
+
+          <!-- PAGE 2 -->
+
+          <button
+            type="button"
+            class="page-button w-10 h-10 rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-100"
+            data-page="2">
+
+            2
+
+          </button>
+
+
+          <!-- PAGE 3 -->
+
+          <button
+            type="button"
+            class="page-button w-10 h-10 rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-100"
+            data-page="3">
+
+            3
+
+          </button>
+
+
+          <!-- NEXT -->
+
+          <button
+            id="nextPage"
+            type="button"
+            class="w-10 h-10 rounded-lg border border-slate-200 text-slate-500 hover:bg-slate-100">
+
+            ›
+
+          </button>
+
+
+        </div>
+
+
+      </main>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- =====================================================
+       FOOTER
+  ====================================================== -->
+
+  <footer
+    class="bg-white border-t border-slate-200 py-8 mt-8">
+
+    <div
+      class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+
+
+      <div
+        class="flex items-center gap-2 font-bold text-primary-600">
+
+        <span
+          class="w-7 h-7 bg-primary-600 text-white rounded-lg flex items-center justify-center text-xs">
+          🏠
+        </span>
+
+        NearU.
+
+      </div>
+
+
+      <p class="text-sm text-slate-500">
+        © 2026 NearU. Made for students in Cambodia.
+      </p>
+
+
+      <div class="flex gap-6 text-sm text-slate-500">
+
+        <a href="#" class="hover:text-primary-600">
+          About
+        </a>
+
+        <a href="#" class="hover:text-primary-600">
+          Help
+        </a>
+
+        <a href="#" class="hover:text-primary-600">
+          Privacy
+        </a>
+
+      </div>
+
+
+    </div>
+
+  </footer>
+
+
+
+  <!-- =====================================================
+       JAVASCRIPT
+  ====================================================== -->
+
+  <script>
+
+
+    /* =====================================================
+       GET ELEMENTS
+    ====================================================== */
+
+    const applyButton =
+      document.getElementById("applyFilters");
+
+    const clearButton =
+      document.getElementById("clearFilters");
+
+    const priceFilter =
+      document.getElementById("priceFilter");
+
+    const priceValue =
+      document.getElementById("priceValue");
+
+    const distanceFilter =
+      document.getElementById("distanceFilter");
+
+    const distanceValue =
+      document.getElementById("distanceValue");
+
+    const propertyFilters =
+      document.querySelectorAll(".property-filter");
+
+    const amenityFilters =
+      document.querySelectorAll(".amenity-filter");
+
+    const propertyGrid =
+      document.getElementById("propertyGrid");
+
+    const resultText =
+      document.getElementById("resultText");
+
+    const noResults =
+      document.getElementById("noResults");
+
+    const sortSelect =
+      document.getElementById("sortSelect");
+
+    const prevPage =
+      document.getElementById("prevPage");
+
+    const nextPage =
+      document.getElementById("nextPage");
+
+    const pageButtons =
+      document.querySelectorAll(".page-button");
+
+
+    /* =====================================================
+       VARIABLES
+    ====================================================== */
+
+    const itemsPerPage = 2;
+
+    let currentPage = 1;
+
+    let filteredCards = [];
+
+    let cards = [
+      ...document.querySelectorAll(".property-card")
+    ];
+
+
+    /* =====================================================
+       PRICE SLIDER
+    ====================================================== */
+
+    priceFilter.addEventListener(
+      "input",
+      function () {
+
+        priceValue.textContent =
+          "$" + this.value;
+
+      }
+    );
+
+
+    /* =====================================================
+       DISTANCE SLIDER
+    ====================================================== */
+
+    distanceFilter.addEventListener(
+      "input",
+      function () {
+
+        distanceValue.textContent =
+          "Up to " + this.value + " km";
+
+      }
+    );
+
+
+    /* =====================================================
+       GET FILTERED CARDS
+    ====================================================== */
+
+    function getFilteredCards() {
+
+
+      const selectedTypes =
+        [...propertyFilters]
+          .filter(input => input.checked)
+          .map(input => input.value);
+
+
+      const selectedAmenities =
+        [...amenityFilters]
+          .filter(input => input.checked)
+          .map(input => input.value);
+
+
+      const maxPrice =
+        Number(priceFilter.value);
+
+
+      const maxDistance =
+        Number(distanceFilter.value);
+
+
+      return cards.filter(card => {
+
+
+        const type =
+          card.dataset.type;
+
+
+        const price =
+          Number(card.dataset.price);
+
+
+        const distance =
+          Number(card.dataset.distance);
+
+
+        const amenities =
+          card.dataset.amenities.split(",");
+
+
+        /* Property type */
+
+        const typeMatch =
+          selectedTypes.length === 0 ||
+          selectedTypes.includes(type);
+
+
+        /* Amenities */
+
+        const amenityMatch =
+          selectedAmenities.length === 0 ||
+          selectedAmenities.every(
+            item => amenities.includes(item)
+          );
+
+
+        /* Price */
+
+        const priceMatch =
+          price <= maxPrice;
+
+
+        /* Distance */
+
+        const distanceMatch =
+          distance <= maxDistance;
+
+
+        return (
+          typeMatch &&
+          amenityMatch &&
+          priceMatch &&
+          distanceMatch
+        );
+
+      });
+
+    }
+
+
+    /* =====================================================
+       SHOW PAGE
+    ====================================================== */
+
+    function showPage(page) {
+
+
+      currentPage = page;
+
+
+      const totalPages =
+        Math.max(
+          1,
+          Math.ceil(
+            filteredCards.length /
+            itemsPerPage
+          )
+        );
+
+
+      /* Keep page inside range */
+
+      if (currentPage < 1) {
+        currentPage = 1;
+      }
+
+
+      if (currentPage > totalPages) {
+        currentPage = totalPages;
+      }
+
+
+      /* Hide all cards */
+
+      cards.forEach(card => {
+
+        card.style.display = "none";
+
+      });
+
+
+      /* Calculate cards */
+
+      const start =
+        (currentPage - 1) *
+        itemsPerPage;
+
+
+      const end =
+        start + itemsPerPage;
+
+
+      const cardsToShow =
+        filteredCards.slice(
+          start,
+          end
+        );
+
+
+      /* Show cards */
+
+      cardsToShow.forEach(card => {
+
+        card.style.display = "";
+
+        card.classList.remove(
+          "filter-animation"
+        );
+
+
+        setTimeout(() => {
+
+          card.classList.add(
+            "filter-animation"
+          );
+
+        }, 10);
+
+      });
+
+
+      /* =================================================
+         RESULT TEXT
+      ================================================== */
+
+      if (filteredCards.length === 0) {
+
+        resultText.textContent =
+          "No matching properties";
+
+        noResults.classList.remove(
+          "hidden"
+        );
+
+      } else {
+
+        noResults.classList.add(
+          "hidden"
+        );
+
+
+        const showingStart =
+          start + 1;
+
+
+        const showingEnd =
+          Math.min(
+            end,
+            filteredCards.length
+          );
+
+
+        resultText.textContent =
+          `Showing ${showingStart}–${showingEnd} of ${filteredCards.length} properties`;
+
+      }
+
+
+      /* =================================================
+         PAGE BUTTON STYLE
+      ================================================== */
+
+      pageButtons.forEach(button => {
+
+
+        const pageNumber =
+          Number(button.dataset.page);
+
+
+        /* Hide page if not needed */
+
+        if (
+          pageNumber > totalPages
+        ) {
+
+          button.style.display =
+            "none";
+
+        } else {
+
+          button.style.display =
+            "";
+
+        }
+
+
+        /* Active page */
+
+        if (
+          pageNumber === currentPage
+        ) {
+
+          button.classList.remove(
+            "border",
+            "border-slate-200",
+            "text-slate-600",
+            "hover:bg-slate-100"
+          );
+
+
+          button.classList.add(
+            "bg-primary-600",
+            "text-white"
+          );
+
+        } else {
+
+          button.classList.remove(
+            "bg-primary-600",
+            "text-white"
+          );
+
+
+          button.classList.add(
+            "border",
+            "border-slate-200",
+            "text-slate-600",
+            "hover:bg-slate-100"
+          );
+
+        }
+
+      });
+
+
+      /* Previous */
+
+      prevPage.disabled =
+        currentPage === 1;
+
+
+      /* Next */
+
+      nextPage.disabled =
+        currentPage === totalPages;
+
+    }
+
+
+    /* =====================================================
+       APPLY FILTER
+    ====================================================== */
+
+    applyButton.addEventListener(
+      "click",
+      function () {
+
+
+        filteredCards =
+          getFilteredCards();
+
+
+        currentPage = 1;
+
+
+        showPage(
+          currentPage
+        );
+
+
+      }
+    );
+
+
+    /* =====================================================
+       CLEAR FILTER
+    ====================================================== */
+
+    clearButton.addEventListener(
+      "click",
+      function () {
+
+
+        /* Clear property type */
+
+        propertyFilters.forEach(
+          input => {
+            input.checked = false;
+          }
+        );
+
+
+        /* Clear amenities */
+
+        amenityFilters.forEach(
+          input => {
+            input.checked = false;
+          }
+        );
+
+
+        /* Reset price */
+
+        priceFilter.value =
+          300;
+
+        priceValue.textContent =
+          "$300";
+
+
+        /* Reset distance */
+
+        distanceFilter.value =
+          5;
+
+        distanceValue.textContent =
+          "Up to 5 km";
+
+
+        /* Reset cards */
+
+        filteredCards =
+          [...cards];
+
+
+        currentPage =
+          1;
+
+
+        showPage(
+          currentPage
+        );
+
+      }
+    );
+
+
+    /* =====================================================
+       PAGE 1 / 2 / 3
+    ====================================================== */
+
+    pageButtons.forEach(
+      button => {
+
+
+        button.addEventListener(
+          "click",
+          function () {
+
+
+            const page =
+              Number(
+                this.dataset.page
+              );
+
+
+            showPage(page);
+
+
+            window.scrollTo({
+              top: 0,
+              behavior: "smooth"
+            });
+
+
+          }
+        );
+
+
+      }
+    );
+
+
+    /* =====================================================
+       PREVIOUS PAGE
+    ====================================================== */
+
+    prevPage.addEventListener(
+      "click",
+      function () {
+
+
+        if (
+          currentPage > 1
+        ) {
+
+
+          showPage(
+            currentPage - 1
+          );
+
+
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+          });
+
+
+        }
+
+      }
+    );
+
+
+    /* =====================================================
+       NEXT PAGE
+    ====================================================== */
+
+    nextPage.addEventListener(
+      "click",
+      function () {
+
+
+        const totalPages =
+          Math.ceil(
+            filteredCards.length /
+            itemsPerPage
+          );
+
+
+        if (
+          currentPage < totalPages
+        ) {
+
+
+          showPage(
+            currentPage + 1
+          );
+
+
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+          });
+
+
+        }
+
+      }
+    );
+
+
+    /* =====================================================
+       SORT
+    ====================================================== */
+
+    sortSelect.addEventListener(
+      "change",
+      function () {
+
+
+        if (
+          this.value === "low"
+        ) {
+
+
+          cards.sort(
+            (a, b) =>
+              Number(
+                a.dataset.price
+              ) -
+              Number(
+                b.dataset.price
+              )
+          );
+
+        }
+
+
+        if (
+          this.value === "high"
+        ) {
+
+
+          cards.sort(
+            (a, b) =>
+              Number(
+                b.dataset.price
+              ) -
+              Number(
+                a.dataset.price
+              )
+          );
+
+        }
+
+
+        if (
+          this.value === "distance"
+        ) {
+
+
+          cards.sort(
+            (a, b) =>
+              Number(
+                a.dataset.distance
+              ) -
+              Number(
+                b.dataset.distance
+              )
+          );
+
+        }
+
+
+        if (
+          this.value === "default"
+        ) {
+
+
+          cards.sort(
+            (a, b) =>
+              Number(
+                a.dataset.order
+              ) -
+              Number(
+                b.dataset.order
+              )
+          );
+
+        }
+
+
+        /* Put cards back into grid */
+
+        cards.forEach(card => {
+
+          propertyGrid.appendChild(
+            card
+          );
+
+        });
+
+
+        /* Update filtered cards */
+
+        filteredCards =
+          getFilteredCards();
+
+
+        currentPage =
+          1;
+
+
+        showPage(
+          currentPage
+        );
+
+
+      }
+    );
+
+
+    /* =====================================================
+       START PAGE
+    ====================================================== */
+
+    filteredCards =
+      [...cards];
+
+
+    showPage(1);
+
+
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Map – NearU</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: { 50: '#eff6ff', 100: '#dbeafe', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8' }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>
+    #map { height: calc(100vh - 64px); }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased overflow-hidden">
+  <!-- Navbar -->
+  <nav class="bg-white border-b border-slate-200 sticky top-0 z-50">
+    <div class="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex items-center gap-8">
+          <a href="index.html" class="flex items-center gap-2 font-bold text-xl text-primary-600">
+            <span class="w-8 h-8 bg-primary-600 text-white rounded-lg flex items-center justify-center text-sm">🏠</span>
+            NearU.
+          </a>
+          <div class="hidden md:flex items-center gap-1">
+            <a href="index.html" class="px-3 py-2 text-sm font-medium text-slate-600 hover:text-primary-600 hover:bg-slate-100 rounded-lg">Home</a>
+            <a href="listings.html" class="px-3 py-2 text-sm font-medium text-slate-600 hover:text-primary-600 hover:bg-slate-100 rounded-lg">Listings</a>
+            <a href="map.html" class="px-3 py-2 text-sm font-medium text-primary-600 bg-primary-50 rounded-lg">Map</a>
+            <a href="how-it-works.html" class="px-3 py-2 text-sm font-medium text-slate-600 hover:text-primary-600 hover:bg-slate-100 rounded-lg">How it Works</a>
+            <a href="landlords.html" class="px-3 py-2 text-sm font-medium text-slate-600 hover:text-primary-600 hover:bg-slate-100 rounded-lg">For Landlords</a>
+          </div>
+        </div>
+        <div class="flex items-center gap-3">
+          <button class="text-sm text-slate-500 hover:text-slate-700">EN ▾</button>
+          <a href="login.html" class="text-sm font-medium text-slate-600 hover:text-primary-600">Login</a>
+          <a href="signup.html" class="px-4 py-2 bg-primary-600 text-white text-sm font-medium rounded-lg hover:bg-primary-700">Sign Up</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="flex h-[calc(100vh-64px)]">
+    <!-- Left Panel -->
+    <aside class="w-full max-w-sm bg-white border-r border-slate-200 flex flex-col overflow-hidden z-10 shadow-lg">
+      <div class="p-5 border-b border-slate-100">
+        <h1 class="font-bold text-lg text-slate-900">Find Student Rentals Near You</h1>
+        <p class="text-xs text-slate-500 mt-1">Phnom Penh, Cambodia</p>
+
+        <div class="mt-4 space-y-3">
+          <div>
+            <label class="text-xs font-medium text-slate-500">Location</label>
+            <input type="text" value="Near Phnom Penh, Cambodia" class="mt-1 w-full text-sm border border-slate-200 rounded-lg px-3 py-2" />
+          </div>
+          <div>
+            <label class="text-xs font-medium text-slate-500">Max Price</label>
+            <input type="range" min="50" max="1000" value="600" class="w-full accent-primary-600 mt-1" />
+            <div class="flex justify-between text-xs text-slate-400">
+              <span>$50</span><span>$600</span><span>$1000+</span>
+            </div>
+          </div>
+          <div>
+            <label class="text-xs font-medium text-slate-500 mb-1 block">Property Type</label>
+            <div class="flex flex-wrap gap-2">
+              <button class="text-xs px-3 py-1.5 rounded-full border border-primary-300 bg-primary-50 text-primary-700">Apartment</button>
+              <button class="text-xs px-3 py-1.5 rounded-full border border-slate-200 text-slate-600 hover:bg-slate-50">Room</button>
+              <button class="text-xs px-3 py-1.5 rounded-full border border-slate-200 text-slate-600 hover:bg-slate-50">Shared House</button>
+              <button class="text-xs px-3 py-1.5 rounded-full border border-slate-200 text-slate-600 hover:bg-slate-50">Studio</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex-1 overflow-y-auto p-4 space-y-3">
+        <div class="flex items-center justify-between text-sm">
+          <span class="font-medium text-slate-700">Nearby Listings</span>
+          <a href="listings.html" class="text-primary-600 text-xs hover:underline">View all (128)</a>
+        </div>
+
+        <!-- Compact cards -->
+        <div class="flex gap-3 p-3 rounded-xl border border-slate-200 hover:border-primary-300 hover:bg-primary-50/30 cursor-pointer transition">
+          <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=120&h=90&fit=crop" class="w-20 h-16 rounded-lg object-cover flex-shrink-0" alt="" />
+          <div class="min-w-0 flex-1">
+            <div class="flex justify-between">
+              <h3 class="text-sm font-semibold text-slate-900 truncate">Modern Room near RUPP</h3>
+              <span class="text-sm font-bold text-primary-600">$120</span>
+            </div>
+            <p class="text-xs text-slate-500 mt-0.5">Private Room · 0.8 km · RUPP</p>
+            <div class="flex items-center gap-1 mt-1 text-xs text-amber-500">★ 4.8</div>
+          </div>
+        </div>
+
+        <div class="flex gap-3 p-3 rounded-xl border border-slate-200 hover:border-primary-300 hover:bg-primary-50/30 cursor-pointer transition">
+          <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=120&h=90&fit=crop" class="w-20 h-16 rounded-lg object-cover flex-shrink-0" alt="" />
+          <div class="min-w-0 flex-1">
+            <div class="flex justify-between">
+              <h3 class="text-sm font-semibold text-slate-900 truncate">Shared House near PUC</h3>
+              <span class="text-sm font-bold text-primary-600">$150</span>
+            </div>
+            <p class="text-xs text-slate-500 mt-0.5">Shared · 1.3 km · PUC</p>
+            <div class="flex items-center gap-1 mt-1 text-xs text-amber-500">★ 4.6</div>
+          </div>
+        </div>
+
+        <div class="flex gap-3 p-3 rounded-xl border border-slate-200 hover:border-primary-300 hover:bg-primary-50/30 cursor-pointer transition">
+          <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=120&h=90&fit=crop" class="w-20 h-16 rounded-lg object-cover flex-shrink-0" alt="" />
+          <div class="min-w-0 flex-1">
+            <div class="flex justify-between">
+              <h3 class="text-sm font-semibold text-slate-900 truncate">Studio near RULE</h3>
+              <span class="text-sm font-bold text-primary-600">$180</span>
+            </div>
+            <p class="text-xs text-slate-500 mt-0.5">Studio · 1.2 km · RULE</p>
+            <div class="flex items-center gap-1 mt-1 text-xs text-amber-500">★ 4.7</div>
+          </div>
+        </div>
+
+        <div class="flex gap-3 p-3 rounded-xl border border-slate-200 hover:border-primary-300 hover:bg-primary-50/30 cursor-pointer transition">
+          <img src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=120&h=90&fit=crop" class="w-20 h-16 rounded-lg object-cover flex-shrink-0" alt="" />
+          <div class="min-w-0 flex-1">
+            <div class="flex justify-between">
+              <h3 class="text-sm font-semibold text-slate-900 truncate">Private Room near NUM</h3>
+              <span class="text-sm font-bold text-primary-600">$95</span>
+            </div>
+            <p class="text-xs text-slate-500 mt-0.5">Private Room · 1.0 km · NUM</p>
+            <div class="flex items-center gap-1 mt-1 text-xs text-amber-500">★ 4.5</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Map -->
+    <div class="flex-1 relative">
+      <div id="map"></div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    const map = L.map('map').setView([11.5564, 104.9282], 13);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap'
+    }).addTo(map);
+
+    // Universities
+    const unis = [
+      { name: 'RUPP', lat: 11.5683, lng: 104.8908 },
+      { name: 'RULE', lat: 11.5550, lng: 104.9200 },
+      { name: 'PUC', lat: 11.5500, lng: 104.9100 },
+      { name: 'NUM', lat: 11.5450, lng: 104.9350 }
+    ];
+    unis.forEach(u => {
+      L.marker([u.lat, u.lng], {
+        icon: L.divIcon({
+          className: '',
+          html: `<div style="background:#1d4ed8;color:white;padding:4px 8px;border-radius:8px;font-size:11px;font-weight:600;white-space:nowrap;box-shadow:0 2px 6px rgba(0,0,0,.2)">🎓 ${u.name}</div>`,
+          iconSize: [80, 28],
+          iconAnchor: [40, 14]
+        })
+      }).addTo(map);
+    });
+
+    // Rental pins
+    const rentals = [
+      [11.565, 104.895], [11.560, 104.915], [11.552, 104.925],
+      [11.548, 104.910], [11.570, 104.930], [11.558, 104.940],
+      [11.542, 104.920], [11.555, 104.900]
+    ];
+    rentals.forEach(p => {
+      L.circleMarker(p, {
+        radius: 10,
+        fillColor: '#3b82f6',
+        color: '#fff',
+        weight: 2,
+        fillOpacity: 0.9
+      }).addTo(map);
+    });
+  </script>
+</body>
+</html>

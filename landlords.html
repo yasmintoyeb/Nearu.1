@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For Landlords – NearU</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: { 50: '#eff6ff', 100: '#dbeafe', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8' }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased">
+  <!-- Navbar -->
+  <nav class="bg-white border-b border-slate-200 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex items-center gap-8">
+          <a href="index.html" class="flex items-center gap-2 font-bold text-xl text-primary-600">
+            <span class="w-8 h-8 bg-primary-600 text-white rounded-lg flex items-center justify-center text-sm">🏠</span>
+            NearU.
+          </a>
+          <div class="hidden md:flex items-center gap-1">
+            <a href="index.html" class="px-3 py-2 text-sm font-medium text-slate-600 hover:text-primary-600 hover:bg-slate-100 rounded-lg">Home</a>
+            <a href="listings.html" class="px-3 py-2 text-sm font-medium text-slate-600 hover:text-primary-600 hover:bg-slate-100 rounded-lg">Listings</a>
+            <a href="map.html" class="px-3 py-2 text-sm font-medium text-slate-600 hover:text-primary-600 hover:bg-slate-100 rounded-lg">Map</a>
+            <a href="how-it-works.html" class="px-3 py-2 text-sm font-medium text-slate-600 hover:text-primary-600 hover:bg-slate-100 rounded-lg">How it Works</a>
+            <a href="landlords.html" class="px-3 py-2 text-sm font-medium text-primary-600 bg-primary-50 rounded-lg">For Landlords</a>
+          </div>
+        </div>
+        <div class="flex items-center gap-3">
+          <button class="text-sm text-slate-500 hover:text-slate-700">EN ▾</button>
+          <a href="login.html" class="text-sm font-medium text-slate-600 hover:text-primary-600">Login</a>
+          <a href="signup.html" class="px-4 py-2 bg-primary-600 text-white text-sm font-medium rounded-lg hover:bg-primary-700">Sign Up</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="bg-gradient-to-br from-primary-600 to-primary-700 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
+      <div class="max-w-2xl">
+        <h1 class="text-4xl lg:text-5xl font-bold leading-tight">List Your Property<br>for Free</h1>
+        <p class="mt-4 text-lg text-primary-100">
+          Reach thousands of students near universities in Cambodia. Get direct inquiries and fill your rooms faster.
+        </p>
+        <a href="#form" class="inline-flex items-center gap-2 mt-8 bg-white text-primary-700 font-semibold px-8 py-3.5 rounded-xl hover:bg-primary-50 transition">
+          🚀 Get Started – List Now
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 relative z-10">
+    <div class="grid sm:grid-cols-3 gap-5">
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+        <div class="w-12 h-12 bg-primary-100 text-primary-600 rounded-xl flex items-center justify-center text-xl">🏷️</div>
+        <h3 class="mt-4 font-semibold text-slate-900">Free Listing</h3>
+        <p class="mt-2 text-sm text-slate-500">List your property at no cost and start receiving inquiries today.</p>
+      </div>
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+        <div class="w-12 h-12 bg-primary-100 text-primary-600 rounded-xl flex items-center justify-center text-xl">✅</div>
+        <h3 class="mt-4 font-semibold text-slate-900">Verified Badge</h3>
+        <p class="mt-2 text-sm text-slate-500">Get a verified landlord badge to build trust and stand out to students.</p>
+      </div>
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+        <div class="w-12 h-12 bg-primary-100 text-primary-600 rounded-xl flex items-center justify-center text-xl">💬</div>
+        <h3 class="mt-4 font-semibold text-slate-900">Direct Student Inquiries</h3>
+        <p class="mt-2 text-sm text-slate-500">Receive messages and calls directly from interested students near you.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Form -->
+  <section id="form" class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="bg-white rounded-3xl border border-slate-200 shadow-sm p-8 lg:p-10">
+      <h2 class="text-2xl font-bold text-slate-900">Add Your Property</h2>
+      <p class="mt-1 text-sm text-slate-500">Fill in the details below to list your property and reach students near universities in Cambodia.</p>
+
+      <form class="mt-8 space-y-6" onsubmit="event.preventDefault(); alert('Demo only – form not connected to a backend.');">
+        <div class="grid sm:grid-cols-2 gap-5">
+          <div>
+            <label class="block text-sm font-medium text-slate-700 mb-1.5">Property Title</label>
+            <input type="text" placeholder="e.g., Modern Room near Royal University of Phnom Penh" class="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-slate-700 mb-1.5">Monthly Price (USD)</label>
+            <div class="relative">
+              <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">$</span>
+              <input type="number" placeholder="150" class="w-full border border-slate-200 rounded-xl pl-8 pr-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent" />
+            </div>
+          </div>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-5">
+          <div>
+            <label class="block text-sm font-medium text-slate-700 mb-1.5">Location / University</label>
+            <input type="text" placeholder="e.g., Royal University of Phnom Penh" class="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-slate-700 mb-1.5">Select University</label>
+            <select class="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent">
+              <option>Select university</option>
+              <option>RUPP – Royal University of Phnom Penh</option>
+              <option>RULE – Royal University of Law and Economics</option>
+              <option>PUC – Paññāsāstra University of Cambodia</option>
+              <option>NUM – National University of Management</option>
+              <option>ITC – Institute of Technology of Cambodia</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-slate-700 mb-1.5">Property Type</label>
+          <select class="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent">
+            <option>Select property type</option>
+            <option>Private Room</option>
+            <option>Studio</option>
+            <option>Apartment</option>
+            <option>Shared House</option>
+            <option>House</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-slate-700 mb-2">Amenities (Select all that apply)</label>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            <label class="flex items-center gap-2 text-sm"><input type="checkbox" class="rounded text-primary-600" /> Wi-Fi</label>
+            <label class="flex items-center gap-2 text-sm"><input type="checkbox" class="rounded text-primary-600" /> Air Conditioning</label>
+            <label class="flex items-center gap-2 text-sm"><input type="checkbox" class="rounded text-primary-600" /> Furniture</label>
+            <label class="flex items-center gap-2 text-sm"><input type="checkbox" class="rounded text-primary-600" /> Private Bathroom</label>
+            <label class="flex items-center gap-2 text-sm"><input type="checkbox" class="rounded text-primary-600" /> Kitchen Access</label>
+            <label class="flex items-center gap-2 text-sm"><input type="checkbox" class="rounded text-primary-600" /> Laundry</label>
+            <label class="flex items-center gap-2 text-sm"><input type="checkbox" class="rounded text-primary-600" /> 24/7 Security</label>
+            <label class="flex items-center gap-2 text-sm"><input type="checkbox" class="rounded text-primary-600" /> Parking</label>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-slate-700 mb-1.5">Upload Photos</label>
+          <div class="border-2 border-dashed border-slate-200 rounded-2xl p-8 text-center hover:border-primary-300 transition cursor-pointer">
+            <div class="text-3xl mb-2">☁️</div>
+            <p class="text-sm font-medium text-slate-700">Click to upload or drag and drop photos</p>
+            <p class="text-xs text-slate-400 mt-1">JPG or PNG up to 5MB each (Max 10 photos)</p>
+          </div>
+        </div>
+
+        <button type="submit" class="w-full bg-primary-600 hover:bg-primary-700 text-white font-semibold py-3.5 rounded-xl transition">
+          ✓ Submit Listing
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t border-slate-200 py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2 font-bold text-primary-600">
+        <span class="w-7 h-7 bg-primary-600 text-white rounded-lg flex items-center justify-center text-xs">🏠</span>
+        NearU.
+      </div>
+      <p class="text-sm text-slate-500">© 2026 NearU. Made for students in Cambodia.</p>
+      <div class="flex gap-6 text-sm text-slate-500">
+        <a href="#" class="hover:text-primary-600">About</a>
+        <a href="#" class="hover:text-primary-600">Help</a>
+        <a href="#" class="hover:text-primary-600">Privacy</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

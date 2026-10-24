@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home Details | NearU</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: { 50: '#eff6ff', 100: '#dbeafe', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8' }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased">
+  <nav class="sticky top-0 z-50 border-b border-slate-200 bg-white">
+    <div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+      <a href="index.html" class="flex items-center gap-2 text-xl font-bold text-primary-600">
+        <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-primary-600 text-sm text-white">🏠</span>
+        NearU.
+      </a>
+      <div class="flex items-center gap-4">
+        <a href="listings.html" class="text-sm font-medium text-slate-600 hover:text-primary-600">All Listings</a>
+        <a href="login.html" class="text-sm font-medium text-slate-600 hover:text-primary-600">Login</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+    <a href="listings.html" class="inline-flex items-center gap-2 text-sm font-medium text-primary-600 hover:underline">← Back to listings</a>
+
+    <div class="mt-5 grid gap-8 lg:grid-cols-[minmax(0,1fr)_360px]">
+      <section class="min-w-0">
+        <img id="property-image" src="" alt="" class="h-64 w-full rounded-2xl object-cover shadow-sm sm:h-96" />
+        <div class="mt-6">
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-800">✓ Verified</span>
+            <span class="rounded-full bg-primary-50 px-3 py-1 text-xs font-semibold text-primary-700">Student-friendly</span>
+          </div>
+          <h1 id="property-title" class="mt-4 text-3xl font-bold text-slate-900 sm:text-4xl"></h1>
+          <p id="property-location" class="mt-2 text-slate-500"></p>
+
+          <div class="mt-8 border-t border-slate-200 pt-6">
+            <h2 class="text-xl font-semibold text-slate-900">About this home</h2>
+            <p id="property-description" class="mt-3 leading-7 text-slate-600"></p>
+          </div>
+
+          <div class="mt-8 border-t border-slate-200 pt-6">
+            <h2 class="text-xl font-semibold text-slate-900">Amenities</h2>
+            <ul id="property-amenities" class="mt-4 grid gap-3 sm:grid-cols-2"></ul>
+          </div>
+
+          <div class="mt-8 rounded-2xl border border-slate-200 bg-white p-5">
+            <h2 class="text-xl font-semibold text-slate-900">Location</h2>
+            <p id="property-nearby" class="mt-2 text-slate-600"></p>
+            <a href="map.html" class="mt-4 inline-flex text-sm font-semibold text-primary-600 hover:underline">Explore the map →</a>
+          </div>
+        </div>
+      </section>
+
+      <aside class="h-fit rounded-2xl border border-slate-200 bg-white p-6 shadow-sm lg:sticky lg:top-24">
+        <p class="text-sm text-slate-500">Monthly rent</p>
+        <p id="property-price" class="mt-1 text-3xl font-bold text-primary-600"></p>
+        <p class="mt-1 text-sm text-slate-500">Utilities and deposit may be additional.</p>
+        <div class="my-6 border-t border-slate-200"></div>
+        <h2 class="font-semibold text-slate-900">About the landlord</h2>
+        <div class="mt-4 flex items-center gap-3">
+          <span id="landlord-initial" class="flex h-11 w-11 items-center justify-center rounded-full bg-primary-100 font-bold text-primary-700"></span>
+          <div>
+            <p id="landlord-name" class="font-medium text-slate-800"></p>
+            <p class="text-sm text-emerald-700">✓ Verified landlord</p>
+          </div>
+        </div>
+        <a href="login.html" class="mt-6 block w-full rounded-xl bg-primary-600 px-4 py-3 text-center font-semibold text-white hover:bg-primary-700">Contact Landlord</a>
+        <p class="mt-3 text-center text-xs leading-5 text-slate-500">Log in to contact the landlord. Never send money before viewing the home.</p>
+      </aside>
+    </div>
+  </main>
+
+  <script>
+    const properties = {
+      'featured-room-rupp': {
+        title: 'Modern Private Room near RUPP',
+        price: 120,
+        location: 'Toul Kork, Phnom Penh · 0.8 km from RUPP',
+        nearby: 'Located in Toul Kork, approximately 0.8 km from the Royal University of Phnom Penh.',
+        landlord: 'Sokha M.',
+        image: 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=1200&h=800&fit=crop',
+        amenities: ['Wi-Fi', 'Air Conditioner', 'Private Bathroom'],
+        description: 'A comfortable, modern private room in a convenient student neighborhood. The room is close to RUPP, local shops, and public transportation.'
+      },
+      'featured-studio-rule': {
+        title: 'Cozy Studio near RULE',
+        price: 150,
+        location: 'Boeung Keng Kang, Phnom Penh · 1.2 km from RULE',
+        nearby: 'In Boeung Keng Kang, approximately 1.2 km from the Royal University of Law and Economics.',
+        landlord: 'Dara P.',
+        image: 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=1200&h=800&fit=crop',
+        amenities: ['Wi-Fi', 'Air Conditioner', 'Kitchen'],
+        description: 'A cozy studio with a practical layout for student living. Conveniently located near RULE, cafes, shops, and everyday services.'
+      },
+      'featured-balcony-puc': {
+        title: 'Luxury Room with Balcony – PUC',
+        price: 180,
+        location: 'Mao Tse Toung Boulevard, Phnom Penh · 1.0 km from PUC',
+        nearby: 'On Mao Tse Toung Boulevard, approximately 1.0 km from Pannasastra University of Cambodia.',
+        landlord: 'Sreyneang L.',
+        image: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1200&h=800&fit=crop',
+        amenities: ['Wi-Fi', 'Air Conditioner', 'Private Bathroom', 'Balcony'],
+        description: 'A bright, comfortable room with a private balcony and convenient access to PUC. Shops, restaurants, and transport links are nearby.'
+      },
+      'listing-rupp': {
+        title: 'Private Room near RUPP',
+        price: 90,
+        location: 'Phnom Penh · 0.5 km from RUPP',
+        nearby: 'Approximately 0.5 km from the Royal University of Phnom Penh.',
+        landlord: 'Sokha L.',
+        image: 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=1200&h=800&fit=crop',
+        amenities: ['Wi-Fi', 'Private Bathroom'],
+        description: 'An affordable private room close to RUPP, with Wi-Fi and a private bathroom. A convenient option for students seeking a short commute.'
+      },
+      'listing-rule': {
+        title: 'Cozy Studio near RULE',
+        price: 160,
+        location: 'Phnom Penh · 0.7 km from RULE',
+        nearby: 'Approximately 0.7 km from the Royal University of Law and Economics.',
+        landlord: 'Rithy M.',
+        image: 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=1200&h=800&fit=crop',
+        amenities: ['Wi-Fi', 'Air Conditioner', 'Kitchen'],
+        description: 'A furnished studio with useful everyday amenities and a convenient location near RULE.'
+      },
+      'listing-num': {
+        title: 'Shared House near NUM',
+        price: 120,
+        location: 'Phnom Penh · 1.0 km from NUM',
+        nearby: 'Approximately 1.0 km from the National University of Management.',
+        landlord: 'Vanny P.',
+        image: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1200&h=800&fit=crop',
+        amenities: ['Wi-Fi', 'Kitchen'],
+        description: 'A shared home near NUM with Wi-Fi and kitchen access, offering a practical option for students.'
+      },
+      'listing-itc': {
+        title: 'Private Room near ITC',
+        price: 85,
+        location: 'Phnom Penh · 0.6 km from ITC',
+        nearby: 'Approximately 0.6 km from the Institute of Technology of Cambodia.',
+        landlord: 'Channa S.',
+        image: 'https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=1200&h=800&fit=crop',
+        amenities: ['Wi-Fi', 'Private Bathroom'],
+        description: 'An affordable private room close to ITC, with Wi-Fi and a private bathroom.'
+      },
+      'listing-aeon': {
+        title: 'Modern Studio near AEON',
+        price: 200,
+        location: 'Phnom Penh · 1.2 km from AEON',
+        nearby: 'Approximately 1.2 km from AEON Mall.',
+        landlord: 'Theavy K.',
+        image: 'https://images.unsplash.com/photo-1484154218962-a197022b5858?w=1200&h=800&fit=crop',
+        amenities: ['Wi-Fi', 'Air Conditioner', 'Kitchen'],
+        description: 'A modern studio with a kitchen and air conditioning, close to shopping and everyday conveniences.'
+      },
+      'listing-bbu': {
+        title: 'House Room near BBU',
+        price: 110,
+        location: 'Phnom Penh · 1.5 km from BBU',
+        nearby: 'Approximately 1.5 km from Build Bright University.',
+        landlord: 'Dara T.',
+        image: 'https://images.unsplash.com/photo-1554995207-c18c203602cb?w=1200&h=800&fit=crop',
+        amenities: ['Wi-Fi', 'Private Bathroom'],
+        description: 'A private room in a house near BBU with Wi-Fi and a private bathroom, suitable for student living.'
+      }
+    };
+
+    const requestedId = new URLSearchParams(window.location.search).get('id');
+    const property = properties[requestedId] || properties['featured-room-rupp'];
+
+    document.title = `${property.title} | NearU`;
+    document.getElementById('property-title').textContent = property.title;
+    document.getElementById('property-location').textContent = `📍 ${property.location}`;
+    document.getElementById('property-nearby').textContent = property.nearby;
+    document.getElementById('property-description').textContent = property.description;
+    document.getElementById('property-price').textContent = `$${property.price}/month`;
+    document.getElementById('landlord-name').textContent = property.landlord;
+    document.getElementById('landlord-initial').textContent = property.landlord.charAt(0);
+
+    const propertyImage = document.getElementById('property-image');
+    propertyImage.src = property.image;
+    propertyImage.alt = property.title;
+
+    const amenitiesList = document.getElementById('property-amenities');
+    property.amenities.forEach(amenity => {
+      const item = document.createElement('li');
+      item.className = 'flex items-center gap-2 text-slate-600';
+      item.textContent = `✓ ${amenity}`;
+      amenitiesList.appendChild(item);
+    });
+  </script>
+</body>
+</html>
