@@ -88,17 +88,17 @@
       <h2 class="text-2xl font-bold text-slate-900">Add Your Property</h2>
       <p class="mt-1 text-sm text-slate-500">Fill in the details below to list your property and reach students near universities in Cambodia.</p>
 
-      <form class="mt-8 space-y-6" onsubmit="event.preventDefault(); alert('Demo only – form not connected to a backend.');">
+      <form id="landlord-listing-form" class="mt-8 space-y-6">
         <div class="grid sm:grid-cols-2 gap-5">
           <div>
             <label class="block text-sm font-medium text-slate-700 mb-1.5">Property Title</label>
-            <input type="text" placeholder="e.g., Modern Room near Royal University of Phnom Penh" class="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent" />
+            <input id="listing-title" type="text" required maxlength="160" placeholder="e.g., Modern Room near Royal University of Phnom Penh" class="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent" />
           </div>
           <div>
             <label class="block text-sm font-medium text-slate-700 mb-1.5">Monthly Price (USD)</label>
             <div class="relative">
               <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">$</span>
-              <input type="number" placeholder="150" class="w-full border border-slate-200 rounded-xl pl-8 pr-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent" />
+              <input id="listing-price" type="number" min="1" step="0.01" required placeholder="150" class="w-full border border-slate-200 rounded-xl pl-8 pr-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent" />
             </div>
           </div>
         </div>
@@ -106,12 +106,12 @@
         <div class="grid sm:grid-cols-2 gap-5">
           <div>
             <label class="block text-sm font-medium text-slate-700 mb-1.5">Location / University</label>
-            <input type="text" placeholder="e.g., Royal University of Phnom Penh" class="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent" />
+            <input id="listing-location" type="text" required maxlength="300" placeholder="e.g., Toul Kork, Phnom Penh" class="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent" />
           </div>
           <div>
             <label class="block text-sm font-medium text-slate-700 mb-1.5">Select University</label>
-            <select class="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent">
-              <option>Select university</option>
+            <select id="listing-university" required class="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent">
+              <option value="">Select university</option>
               <option>RUPP – Royal University of Phnom Penh</option>
               <option>RULE – Royal University of Law and Economics</option>
               <option>PUC – Paññāsāstra University of Cambodia</option>
@@ -124,8 +124,8 @@
 
         <div>
           <label class="block text-sm font-medium text-slate-700 mb-1.5">Property Type</label>
-          <select class="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent">
-            <option>Select property type</option>
+          <select id="listing-type" required class="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent">
+            <option value="">Select property type</option>
             <option>Private Room</option>
             <option>Studio</option>
             <option>Apartment</option>
@@ -137,30 +137,58 @@
         <div>
           <label class="block text-sm font-medium text-slate-700 mb-2">Amenities (Select all that apply)</label>
           <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-            <label class="flex items-center gap-2 text-sm"><input type="checkbox" class="rounded text-primary-600" /> Wi-Fi</label>
-            <label class="flex items-center gap-2 text-sm"><input type="checkbox" class="rounded text-primary-600" /> Air Conditioning</label>
-            <label class="flex items-center gap-2 text-sm"><input type="checkbox" class="rounded text-primary-600" /> Furniture</label>
-            <label class="flex items-center gap-2 text-sm"><input type="checkbox" class="rounded text-primary-600" /> Private Bathroom</label>
-            <label class="flex items-center gap-2 text-sm"><input type="checkbox" class="rounded text-primary-600" /> Kitchen Access</label>
-            <label class="flex items-center gap-2 text-sm"><input type="checkbox" class="rounded text-primary-600" /> Laundry</label>
-            <label class="flex items-center gap-2 text-sm"><input type="checkbox" class="rounded text-primary-600" /> 24/7 Security</label>
-            <label class="flex items-center gap-2 text-sm"><input type="checkbox" class="rounded text-primary-600" /> Parking</label>
+            <label class="flex items-center gap-2 text-sm"><input name="amenities" value="Wi-Fi" type="checkbox" class="rounded text-primary-600" /> Wi-Fi</label>
+            <label class="flex items-center gap-2 text-sm"><input name="amenities" value="Air Conditioning" type="checkbox" class="rounded text-primary-600" /> Air Conditioning</label>
+            <label class="flex items-center gap-2 text-sm"><input name="amenities" value="Furniture" type="checkbox" class="rounded text-primary-600" /> Furniture</label>
+            <label class="flex items-center gap-2 text-sm"><input name="amenities" value="Private Bathroom" type="checkbox" class="rounded text-primary-600" /> Private Bathroom</label>
+            <label class="flex items-center gap-2 text-sm"><input name="amenities" value="Kitchen Access" type="checkbox" class="rounded text-primary-600" /> Kitchen Access</label>
+            <label class="flex items-center gap-2 text-sm"><input name="amenities" value="Laundry" type="checkbox" class="rounded text-primary-600" /> Laundry</label>
+            <label class="flex items-center gap-2 text-sm"><input name="amenities" value="24/7 Security" type="checkbox" class="rounded text-primary-600" /> 24/7 Security</label>
+            <label class="flex items-center gap-2 text-sm"><input name="amenities" value="Parking" type="checkbox" class="rounded text-primary-600" /> Parking</label>
           </div>
         </div>
 
         <div>
           <label class="block text-sm font-medium text-slate-700 mb-1.5">Upload Photos</label>
-          <div class="border-2 border-dashed border-slate-200 rounded-2xl p-8 text-center hover:border-primary-300 transition cursor-pointer">
+          <div class="border-2 border-dashed border-slate-200 rounded-2xl p-8 text-center hover:border-primary-300 transition">
             <div class="text-3xl mb-2">☁️</div>
-            <p class="text-sm font-medium text-slate-700">Click to upload or drag and drop photos</p>
+            <label for="listing-photos" class="block cursor-pointer text-sm font-medium text-slate-700">Click to upload photos</label>
+            <input id="listing-photos" type="file" accept="image/jpeg,image/png" multiple class="mt-2 block w-full text-sm text-slate-600" />
             <p class="text-xs text-slate-400 mt-1">JPG or PNG up to 5MB each (Max 10 photos)</p>
+          </div>
+        </div>
+
+        <div>
+          <label for="listing-description" class="mb-1.5 block text-sm font-medium text-slate-700">Description</label>
+          <textarea id="listing-description" required maxlength="4000" rows="4" class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm" placeholder="Describe the property and its features"></textarea>
+        </div>
+
+        <div class="grid gap-5 sm:grid-cols-3">
+          <div>
+            <label for="listing-distance" class="mb-1.5 block text-sm font-medium text-slate-700">Distance to university (km)</label>
+            <input id="listing-distance" type="number" min="0" step="0.1" class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm" />
+          </div>
+          <div>
+            <label for="listing-latitude" class="mb-1.5 block text-sm font-medium text-slate-700">Latitude (map pin)</label>
+            <input id="listing-latitude" type="number" min="-90" max="90" step="any" class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm" />
+          </div>
+          <div>
+            <label for="listing-longitude" class="mb-1.5 block text-sm font-medium text-slate-700">Longitude (map pin)</label>
+            <input id="listing-longitude" type="number" min="-180" max="180" step="any" class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm" />
           </div>
         </div>
 
         <button type="submit" class="w-full bg-primary-600 hover:bg-primary-700 text-white font-semibold py-3.5 rounded-xl transition">
           ✓ Submit Listing
         </button>
+        <p id="listing-status" class="text-sm text-slate-600" role="status" aria-live="polite"></p>
       </form>
+
+        <section id="landlord-dashboard" class="mt-10 hidden border-t border-slate-200 pt-8" aria-labelledby="landlord-dashboard-title">
+          <h2 id="landlord-dashboard-title" class="text-xl font-bold text-slate-900">Your listings and inquiries</h2>
+          <p id="landlord-dashboard-status" class="mt-2 text-sm text-slate-500" role="status"></p>
+          <div id="landlord-dashboard-content" class="mt-4 space-y-4"></div>
+        </section>
     </div>
   </section>
 
@@ -180,5 +208,8 @@
     </div>
   </footer>
   <script src="./site-preferences.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="./supabase.js"></script>
+  <script src="./landlord.js"></script>
 </body>
 </html>

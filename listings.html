@@ -193,8 +193,8 @@
               id="priceFilter"
               type="range"
               min="50"
-              max="300"
-              value="300"
+              max="5000"
+              value="5000"
               class="w-full accent-primary-600">
 
             <div
@@ -203,10 +203,10 @@
               <span>$50</span>
 
               <span id="priceValue">
-                $300
+                $5000
               </span>
 
-              <span>$300</span>
+              <span>$5000+</span>
 
             </div>
 
@@ -347,8 +347,8 @@
               id="distanceFilter"
               type="range"
               min="0"
-              max="5"
-              value="5"
+              max="50"
+              value="50"
               step="0.5"
               class="w-full accent-primary-600">
 
@@ -359,10 +359,10 @@
               <span>0 km</span>
 
               <span id="distanceValue">
-                Up to 5 km
+                Up to 50 km
               </span>
 
-              <span>5 km</span>
+              <span>50 km</span>
 
             </div>
 
@@ -419,7 +419,7 @@
             <p
               id="resultText"
               class="text-sm text-slate-500 mt-1">
-              Showing 1–2 of 6 properties
+              Loading published rentals...
             </p>
 
           </div>
@@ -1958,6 +1958,9 @@
   </script>
 
   <script src="./site-preferences.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="./supabase.js"></script>
+  <script src="./rentals.js"></script>
 </body>
 
 </html>

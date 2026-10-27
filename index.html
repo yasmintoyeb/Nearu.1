@@ -155,30 +155,30 @@
         <div class="mt-8 bg-white rounded-2xl shadow-lg border border-blue-600 p-4 flex flex-col sm:flex-row gap-3">
           <div class="flex-1">
             <label class="block text-xs font-medium text-slate-500 mb-1">LOCATION / UNIVERSITY</label>
-            <input type="text" placeholder="e.g. RUPP, Toul Kork..."
+            <input id="home-search-location" type="text" placeholder="e.g. RUPP, Toul Kork..."
               class="w-full border border-slate-300 rounded-md focus:ring-0 text-sm p-0 placeholder:text-slate-400 focus:border-primary-600" />
           </div>
           <div class="w-full sm:w-28">
             <label class="block text-xs font-medium text-slate-500 mb-1">MAX PRICE</label>
-            <select
+            <select id="home-search-price"
               class="w-full rounded-md border border-slate-300 focus:ring-0 text-sm p-0 text-slate-700 focus:border-primary-600">
-              <option>Any</option>
-              <option>Under $100</option>
-              <option>Under $150</option>
-              <option>Under $200</option>
+              <option value="">Any</option>
+              <option value="100">Under $100</option>
+              <option value="150">Under $150</option>
+              <option value="200">Under $200</option>
             </select>
           </div>
           <div class="w-full sm:w-32">
             <label class="block text-xs font-medium text-slate-500 mb-1">PROPERTY TYPE</label>
-            <select
+            <select id="home-search-type"
               class="w-full rounded-md border border-slate-300 focus:ring-0 text-sm p-0 text-slate-700 focus:border-primary-600">
-              <option>Any</option>
-              <option>Private Room</option>
-              <option>Apartment</option>
-              <option>House</option>
+              <option value="">Any</option>
+              <option value="private">Private Room</option>
+              <option value="apartment">Apartment</option>
+              <option value="house">House</option>
             </select>
           </div>
-          <a href="listings.html"
+          <a id="home-search-submit" href="listings.html"
             class="bg-primary-600 hover:bg-primary-700 text-white font-medium px-6 py-1 rounded-md flex items-center justify-center gap-2 self-end">
             🔍 Search
           </a>
@@ -187,7 +187,7 @@
         <!-- Stats -->
         <div class="mt-10 flex flex-wrap gap-8">
           <div>
-            <div class="text-3xl font-bold text-primary-600">1,200+</div>
+            <div id="active-listings-count" class="text-3xl font-bold text-primary-600">0</div>
             <div class="text-sm text-slate-500">Active Listings</div>
           </div>
           <div>
@@ -212,14 +212,14 @@
   <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
     <div class="flex items-center justify-between mb-8">
       <div>
-        <h2 class="text-2xl font-bold text-slate-900">Featured & Verified Listings</h2>
-        <p class="text-slate-500 mt-1">Hand-picked rooms with verified landlords near top universities</p>
+        <h2 class="text-2xl font-bold text-slate-900">Published Rental Listings</h2>
+        <p class="text-slate-500 mt-1">Recently published student rentals from NearU landlords</p>
       </div>
       <a href="listings.html" class="text-primary-600 font-medium hover:underline hidden sm:inline">View All Listings
         →</a>
     </div>
 
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div id="featured-rentals" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
       <!-- Card 1 -->
       <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition">
         <div class="relative h-48 bg-slate-200">
@@ -414,13 +414,9 @@
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
-    const map = L.map('hero-map', { zoomControl: true, attributionControl: false }).setView([11.5564, 104.9282], 13);
+    window.heroMap = L.map('hero-map', { zoomControl: true, attributionControl: false }).setView([11.5564, 104.9282], 13);
+    const map = window.heroMap;
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
-    const pins = [
-      [11.568, 104.921], [11.555, 104.915], [11.560, 104.930],
-      [11.548, 104.925], [11.562, 104.940]
-    ];
-    pins.forEach(p => L.marker(p).addTo(map));
   </script>
   <script>
     const translations = {
@@ -551,6 +547,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="./supabase.js"></script>
   <script src="./app.js"></script>
+  <script src="./rentals.js"></script>
 </body>
 
 </html>

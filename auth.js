@@ -23,6 +23,24 @@ function setFormSubmitting(form, isSubmitting) {
   submitButton.classList.toggle("cursor-not-allowed", isSubmitting);
 }
 
+function describeAuthBackendError(error) {
+  const message = error?.message || String(error);
+  return /schema cache|could not find the table/i.test(message)
+    ? `${message}. Run backend-schema.sql in the Supabase SQL Editor.`
+    : message;
+}
+
+function redirectAfterAuth() {
+  const redirect = new URLSearchParams(window.location.search).get("redirect");
+  if (!redirect) {
+    window.location.href = "index.html";
+    return;
+  }
+
+  const target = new URL(redirect, window.location.href);
+  window.location.href = target.origin === window.location.origin ? target.href : "index.html";
+}
+
 async function ensureProfile(user) {
   if (!user || !user.id) {
     throw new Error("The authenticated user profile is missing the account ID.");
@@ -33,7 +51,7 @@ async function ensureProfile(user) {
     .upsert(
       {
         id: user.id,
-        full_name: user.user_metadata?.full_name || null
+        full_name: user.user_metadata?.full_name || "NearU User"
       },
       { onConflict: "id", ignoreDuplicates: true }
     );
@@ -80,13 +98,13 @@ if (signupForm) {
           await ensureProfile(data.user);
         } catch (error) {
           showFormMessage(
-            `Your account was created, but we could not create your profile: ${error.message}`,
+            `Your account was created, but we could not create your profile: ${describeAuthBackendError(error)}`,
             true
           );
           return;
         }
 
-        window.location.href = "index.html";
+        redirectAfterAuth();
         return;
       }
 
@@ -118,13 +136,13 @@ if (loginForm) {
         await ensureProfile(data.user);
       } catch (error) {
         showFormMessage(
-          `You are logged in, but we could not create your profile: ${error.message}`,
+          `You are logged in, but we could not create your profile: ${describeAuthBackendError(error)}`,
           true
         );
         return;
       }
 
-      window.location.href = "index.html";
+      redirectAfterAuth();
     } catch (error) {
       showFormMessage(error.message || "We could not log you in. Please try again.", true);
     } finally {

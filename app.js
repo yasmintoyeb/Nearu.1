@@ -1,7 +1,7 @@
 
 async function testDatabase() {
   const { data, error } = await window.supabaseClient
-    .from("rentals")
+    .from("rental_listings")
     .select("id, title, price, location")
     .limit(10);
 
