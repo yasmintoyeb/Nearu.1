@@ -23,6 +23,24 @@ function setFormSubmitting(form, isSubmitting) {
   submitButton.classList.toggle("cursor-not-allowed", isSubmitting);
 }
 
+async function ensureProfile(user) {
+  if (!user || !user.id) {
+    throw new Error("The authenticated user profile is missing the account ID.");
+  }
+
+  const { error } = await window.supabaseClient
+    .from("profiles")
+    .upsert(
+      {
+        id: user.id,
+        full_name: user.user_metadata?.full_name || null
+      },
+      { onConflict: "id", ignoreDuplicates: true }
+    );
+
+  if (error) throw error;
+}
+
 if (signupForm) {
   const password = document.getElementById("password");
   const confirmPassword = document.getElementById("confirm-password");
@@ -58,6 +76,16 @@ if (signupForm) {
       if (error) throw error;
 
       if (data.session) {
+        try {
+          await ensureProfile(data.user);
+        } catch (error) {
+          showFormMessage(
+            `Your account was created, but we could not create your profile: ${error.message}`,
+            true
+          );
+          return;
+        }
+
         window.location.href = "index.html";
         return;
       }
@@ -80,12 +108,22 @@ if (loginForm) {
 
     setFormSubmitting(loginForm, true);
     try {
-      const { error } = await window.supabaseClient.auth.signInWithPassword({
+      const { data, error } = await window.supabaseClient.auth.signInWithPassword({
         email: document.getElementById("email").value.trim(),
         password: document.getElementById("password").value
       });
 
       if (error) throw error;
+      try {
+        await ensureProfile(data.user);
+      } catch (error) {
+        showFormMessage(
+          `You are logged in, but we could not create your profile: ${error.message}`,
+          true
+        );
+        return;
+      }
+
       window.location.href = "index.html";
     } catch (error) {
       showFormMessage(error.message || "We could not log you in. Please try again.", true);
